@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudySync - Smart Study Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-logo">
+            <span class="logo-text">StudySync</span>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" class="logo-link">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>StudySync</span>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#subjects" class="nav-link">Subjects</a>
+                <a href="#timer" class="nav-link">Timer</a>
+                <a href="#quotes" class="nav-link">Quotes</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <div class="theme-toggle">
+                <input type="checkbox" id="themeSwitch">
+                <label for="themeSwitch" class="theme-label">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="theme-ball"></span>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="section home-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="typewriter-text">Organize Your Study Time</span>
+                </h1>
+                <p class="hero-description">
+                    StudySync helps you manage your subjects, track progress, and stay motivated with smart tools designed for students.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#subjects" class="btn btn-primary">Start Planning</a>
+                    <a href="#timer" class="btn btn-secondary">Try Timer</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class="fas fa-book"></i>
+                    <span>Subjects</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-clock"></i>
+                    <span>Timer</span>
+                </div>
+                <div class="floating-card card-3">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Progress</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section id="subjects" class="section subjects-section">
+        <div class="container">
+            <h2 class="section-title">Your Subjects</h2>
+            <p class="section-subtitle">Track your study goals and progress</p>
+            
+            <div class="subjects-container">
+                <div class="subject-form-container">
+                    <form class="subject-form" id="subjectForm">
+                        <h3>Add New Subject</h3>
+                        <div class="form-group">
+                            <label for="subjectName">Subject Name</label>
+                            <input type="text" id="subjectName" placeholder="e.g., Mathematics" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studyGoal">Weekly Goal (hours)</label>
+                            <input type="number" id="studyGoal" min="1" max="50" value="10" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Subject</button>
+                    </form>
+                </div>
+                
+                <div class="subjects-list" id="subjectsList">
+                    <!-- Subjects will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timer Section -->
+    <section id="timer" class="section timer-section">
+        <div class="container">
+            <h2 class="section-title">Study Timer</h2>
+            <p class="section-subtitle">Pomodoro technique for focused study sessions</p>
+            
+            <div class="timer-container">
+                <div class="timer-display">
+                    <div class="timer-circle">
+                        <svg class="timer-svg" viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" class="timer-bg"></circle>
+                            <circle cx="50" cy="50" r="45" class="timer-progress" id="timerProgress"></circle>
+                        </svg>
+                        <div class="timer-text">
+                            <span id="timerMinutes">25</span>:<span id="timerSeconds">00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timer-controls">
+                    <div class="timer-modes">
+                        <button class="timer-mode-btn active" data-mode="study">Study</button>
+                        <button class="timer-mode-btn" data-mode="break">Break</button>
+                    </div>
+                    
+                    <div class="timer-buttons">
+                        <button id="startTimer" class="btn btn-primary">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button id="pauseTimer" class="btn btn-secondary" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button id="resetTimer" class="btn btn-secondary">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section id="quotes" class="section quotes-section">
+        <div class="container">
+            <h2 class="section-title">Motivational Quotes</h2>
+            <p class="section-subtitle">Get inspired to keep studying</p>
+            
+            <div class="quote-container">
+                <div class="quote-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p id="quoteText" class="quote-text">Education is the most powerful weapon which you can use to change the world.</p>
+                    <p id="quoteAuthor" class="quote-author">- Nelson Mandela</p>
+                </div>
+                <button id="newQuote" class="btn btn-primary">
+                    <i class="fas fa-lightbulb"></i> Inspire Me
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="section-subtitle">We'd love to hear from you</p>
+            
+            <div class="contact-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="contactName">Your Name</label>
+                        <input type="text" id="contactName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Your Email</label>
+                        <input type="email" id="contactEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactMessage">Your Message</label>
+                        <textarea id="contactMessage" rows="5" placeholder="Enter your message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    <span>StudySync</span>
+                </div>
+                <p class="footer-text">Smart study planner for students</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 StudySync. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
